@@ -31,4 +31,15 @@ is_valid = verify_password("Wrong Password", hashed)
 
 USER_DATA_FILE = "users.txt"
 def register_user(username, password): 
-    #
+    if os.path.exists(USER_DATA_FILE):
+        with open(USER_DATA_FILE, "r") as f:
+            for line in f:
+                stored_username, _ = line.strip().split(":")
+                if stored_username == username:
+                    print("Username already exists.")
+                    return False
+    hashed_password = hash_password(password)
+    with open(USER_DATA_FILE, "a") as f:
+        f.write(f"{username}:{hashed_password}\n")
+    print("User registered successfully.")
+    return True
