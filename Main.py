@@ -1,4 +1,4 @@
-
+from auth import register_user, login_user, validate_username, validate_password
 # Display menu
 def display_menu():
     print("\n1. Register User")
@@ -34,3 +34,6 @@ def main():
             break
         else:
             print("Invalid option. Please try again.")
+
+if __name__ == "__main__":
+    main()

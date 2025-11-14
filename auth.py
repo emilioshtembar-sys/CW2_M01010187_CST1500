@@ -1,4 +1,4 @@
-import bcrypt
+import bcrypt 
 import os
 
 USER_DATA_FILE = "users.txt"
@@ -80,56 +80,3 @@ def validate_password(password):
     if not any(c in "!@#$%^&*()-_=+[]{}|;:',.<>?/" for c in password):
         return False, "Password must contain a special character."
     return True, ""
-
-# Display menu
-def display_menu():
-    print("\n1. Register User")
-    print("2. Login User")
-    print("3. Exit")
-
-# Main loop
-def main():
-    print("\nWelcome to the Week 7 Authentication System!")
-    while True:
-        display_menu()
-        choice = input("\nPlease select an option (1-3): ").strip()
-
-        if choice == '1':
-            print("\n--- USER REGISTRATION ---")
-            username = input("Enter a username: ").strip()
-            is_valid, error_msg = validate_username(username)
-            if not is_valid:
-                print(f"Error: {error_msg}")
-                continue
-
-            password = input("Enter a password: ").strip()
-            is_valid, error_msg = validate_password(password)
-            if not is_valid:
-                print(f"Error: {error_msg}")
-                continue
-
-            password_confirm = input("Confirm password: ").strip()
-            if password != password_confirm:
-                print("Error: Passwords do not match.")
-                continue
-
-            register_user(username, password)
-
-        elif choice == '2':
-            print("\n--- USER LOGIN ---")
-            username = input("Enter your username: ").strip()
-            password = input("Enter your password: ").strip()
-            if login_user(username, password):
-                print("\nYou are now logged in.")
-            input("\nPress Enter to return to main menu...")
-
-        elif choice == '3':
-            print("\nThank you for using the authentication system.")
-            break
-
-        else:
-            print("\nError: Invalid option. Please select 1, 2, or 3.")
-
-if __name__ == "__main__":
-    main()
-
