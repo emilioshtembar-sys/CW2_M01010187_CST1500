@@ -4,13 +4,13 @@
 ## Week 7 Secure Authentication System for Security & File Persistence (Hashing)
 ## Project Description 
 This is a secure authentication system  with hashing, which i have designed for week 7.
- The aim is to allow users to register theur accounts and to log in. 
- The project consists of 2 main flies which are Main.py and auth.py
+The aim is to allow users to register theur accounts and to log in. 
+The project consists of 2 main flies which are Main.py and auth.py
 ## Features
 Secure password hasing is carried out thrpugh the import bcrypt FUNCTION.
 there was a menu that presents the user with three option register user, login user,  and exit. File-based user data persistence is enable by.
-Password login included password verification when a password was entered to see if it was valid. inpit validation was used for both the username and password was used to ensure that the valid username and passwords were entered. 
-here is an output example of the user login system for registration, login and  and it is working coorectly
+Password login included password verification when a password was entered to see if it was valid. input validation was used for both the username and password was used to ensure that the valid username and passwords were entered. 
+here is an output example of the user login system for registration, login and  and it is working correctly
 1. Register User
 2. Login User
 3. Exit
