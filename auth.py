@@ -17,8 +17,6 @@ def verify_password(plaintext_password, stored_hash):
     return bcrypt.checkpw(encoded_password, encoded_hash)
 
 
-#Temporary test code - remove after testing
-test_password = "Magic123#"
 
 # Check if user exists in file
 def user_exists(username):
