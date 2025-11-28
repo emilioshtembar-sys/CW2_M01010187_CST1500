@@ -7,7 +7,14 @@ def add_user(conn, name, hash):
     curr.execute(sql, param)
     conn.commit()
 
-
+def get_user_by_name(conn, name):
+    curr = conn.cursor()
+    sql = ('''SELECT * FROM users WHERE username = ?''')
+    param = (name,)
+    curr.execute(sql, param)
+    user = curr.fetchone()
+    conn.close()
+    return user
 
 
 def get_all_users(conn):

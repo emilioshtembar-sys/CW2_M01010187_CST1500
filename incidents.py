@@ -16,6 +16,15 @@ def get_all_incidents(conn):
     conn.close()
     return incidents
 
+def get_incident_by_id(conn, incident_id):
+    curr = conn.cursor()
+    sql = '''SELECT * FROM incidents WHERE id = ?'''
+    param = (incident_id,)
+    curr.execute(sql, param)
+    incident = curr.fetchone()
+    conn.close()
+    return incident
+
 def delete_incident(conn, incident_id):
     curr = conn.cursor()
     sql = '''DELETE FROM incidents WHERE id = ?'''

@@ -8,6 +8,17 @@ def add_dataset(conn, name, metadata):
     curr.execute(sql, param)
     conn.commit()
 
+
+def get_dataset_by_id(conn, dataset_id):
+    curr = conn.cursor()
+    sql = '''SELECT * FROM datasets WHERE id = ?'''
+    param = (dataset_id,)
+    curr.execute(sql, param)
+    dataset = curr.fetchone()
+    conn.close()
+    return dataset
+
+
 def get_all_datasets(conn):
     curr = conn.cursor()
     sql = '''SELECT * FROM datasets'''

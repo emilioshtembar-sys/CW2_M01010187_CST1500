@@ -1,10 +1,10 @@
 import pandas as pd 
-from app.users import add_user,
+from app.users import add_user, add_incident, add_ticket, add_dataset
 
 
 
 def migrate_users(conn):
-    with open('DATA\\user.txt', 'r') as f:
+    with open('DATA\\users.py', 'r') as f:
         users = f.readlines()
     for user in users:
         name, hash = user.strip().split(',')
@@ -14,18 +14,40 @@ def migrate_users(conn):
 
 
 
-def migrate_tickets(conn, filepath='DATA\\ITtickets.txt'):
-    with open(filepath, 'r') as f:
+def migrate_tickets(conn):
+    with open('DATA\\ITtickets.py', 'r') as f:
         tickets = f.readlines()
     for t in tickets:
         title, desc, status = t.strip().split(',')
         add_ticket(conn, title, desc, status)
         print(f"Added ticket: {title}")
 
-def migrate_datasets(conn, filepath='DATA\\datasets.txt'):
-    with open(filepath, 'r') as f:
+def migrate_datasets(conn):
+    with open('DATA\\datasets.py', 'r') as f:
         datasets = f.readlines()
     for ds in datasets:
         name, desc = ds.strip().split(',')
         add_dataset(conn, name, desc)
         print(f"Added dataset: {name}")
+
+
+def migrate_incidents(conn):
+    # Open the incidents file and read all lines
+    with open('DATA\\incidents.py', 'r') as f:
+        incidents = f.readlines()
+
+    # Process each incident line
+    for inc in incidents:
+        # Assuming each line is formatted like: "title,description,severity,status,reporter"
+        title, description, severity, status, reporter = inc.strip().split(',')
+
+        # Call your insert helper (similar to add_user)
+        add_incident(conn, title, description, severity, status, reporter)
+
+        # Feedback for reproducibility
+        print(inc.strip())
+
+    # Close the connection when done
+    conn.close()
+
+
