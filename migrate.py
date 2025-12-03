@@ -27,27 +27,17 @@ def migrate_datasets(conn):
         datasets = f.readlines()
     for ds in datasets:
         name, desc = ds.strip().split(',')
-        add_dataset(conn, name, desc)
-        print(f"Added dataset: {name}")
-
+    add_dataset(conn, name, desc)
+    print(f"Added dataset: {name}")
+    conn.close()
 
 def migrate_incidents(conn):
-    # Open the incidents file and read all lines
     with open('DATA\\incidents.py', 'r') as f:
         incidents = f.readlines()
-
-    # Process each incident line
     for inc in incidents:
-        # Assuming each line is formatted like: "title,description,severity,status,reporter"
         title, description, severity, status, reporter = inc.strip().split(',')
-
-        # Call your insert helper (similar to add_user)
-        add_incident(conn, title, description, severity, status, reporter)
-
-        # Feedback for reproducibility
-        print(inc.strip())
-
-    # Close the connection when done
+    add_incident(conn, title, description, severity, status, reporter)
+    print(inc.strip())
     conn.close()
 
 

@@ -9,13 +9,15 @@ def add_ticket(conn, user_id, issue, status="open"):
     curr.execute(sql, param)
     conn.commit()
 
-def get_all_tickets(conn):
+
+def get_ticket_by_id(conn, ticket_id):
     curr = conn.cursor()
-    sql = '''SELECT * FROM tickets'''
-    curr.execute(sql)
-    tickets = curr.fetchall()
+    sql = '''SELECT * FROM tickets WHERE id = ?'''
+    param = (ticket_id,)
+    curr.execute(sql, param)
+    ticket = curr.fetchone()
     conn.close()
-    return tickets
+    return ticket
 
 def delete_ticket(conn, ticket_id):
     curr = conn.cursor()
